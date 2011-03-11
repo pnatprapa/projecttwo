@@ -1,0 +1,40 @@
+<!-- app/views/user_suggestions/index.html.erb -->
+<h2>Suggestions index page</h2>
+<p>You are logged in under: <%= @username %><br />
+Division: <strong><%= @division %></strong><br />
+Department: <strong><%= @department %></strong></p>
+<!-- Create sortable table --> 
+<table border="1" class="sortable">
+  <tr>
+    <th><a href="#">Person</a></th>
+    <th><a href="#">Username</a></th>
+    <th><a href="#">Division</a></th>
+    <th><a href="#">Department</a></th>
+    <th><a href="#">Suggestion</a></th>
+    <th><a href="#">Created at</a></th>
+    <th><a href="#">Updated at</a></th>
+  </tr>
+  <% @usersuggestions.each do |s| %>
+    <tr>
+      <td><%= s.first_name %> <%= s.last_name %></td>
+      <td><%= s.username %></td>
+      <td><%= s.div %></td>
+      <td><%= s.dep %></td>
+      <td><%= s.text %></td>
+      <td><%= s.created_at.asctime %></td>
+      <td><%= s.updated_at.asctime %></td>
+    </tr>
+  <% end %>
+</table>
+
+<!-- If you are a super user -->
+<% if cookies.signed[:is_admin] %>
+  <%= link_to "Manage Users", :controller => "users", :action => "index" %>&nbsp;
+<% end %>
+
+<!-- If you are a regular user -->
+<% if cookies.signed[:authenticated] %>
+  <%= link_to "Add Suggestion", :controller => "user_suggestions", :action => "new" %>&nbsp;
+  <%= link_to "Edit Suggestions", :controller => "user_suggestions", :action => "chooseSuggestion" %>&nbsp;
+<% end %>
+

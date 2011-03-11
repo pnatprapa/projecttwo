@@ -1,0 +1,12 @@
+<!-- app/views/pages/login.html.erb -->
+<h2>Login page</h2>
+<h2>Enter your username and password to connect to the database</h2>
+<%= form_for :user, :url => {:action => "login" } do |l| %>
+	
+	<!-- Put text on screen followed by blank field for user input -->
+  <%= l.label "Username: " %><%= l.text_field :username %><br />
+  <%= l.label "Password: " %><%= l.password_field :password %><br />
+  
+  <!-- Submit botton -->
+  <%= l.submit "Connect" %>
+<% end %>

@@ -1,0 +1,28 @@
+<!-- app/views/users/index.html.erb -->
+<% if cookies.signed[:is_admin] %>
+  <h2>Current Users</h2>
+  <!-- sortable table -->
+  <table border="1" class="sortable">
+    <tr>
+      <th><a href="#">First</a></th>
+      <th><a href="#">Last</a></th>
+      <th><a href="#">Username</a></th>
+      <th><a href="#">Division</a></th>
+      <th><a href="#">Department</a></th>
+    </tr>
+    <% @users.each do |v| %>
+      <tr>
+        <td><%= v.first_name %></td>
+        <td><%= v.last_name %></td>
+        <td><%= v.username %></td>
+        <td><%= v.div %></td>
+        <td><%= v.dep %></td>
+      </tr>
+    <% end %>
+  <table>
+  <%= link_to "Add User", :controller => "users", :action => "new" %>&nbsp;
+  <%= link_to "Edit User", :controller => "users", :action => "chooseUser" %>&nbsp;
+  <%= link_to "View Suggestions", :controller => "user_suggestions", :action => "index" %>&nbsp;
+<% else %>
+  <h2>You shouldn't be here</h2>
+<% end %>

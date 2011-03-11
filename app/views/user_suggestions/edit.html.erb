@@ -1,0 +1,17 @@
+<!-- app/views/user_suggestions/edit.html.erb -->
+<!-- allows for superuser and regulare authenticated user to edit :authenticated -->
+<% if cookies.signed[:authenticated]%>
+  <h2>Edit suggestion:</h2>
+  <%= form_for @suggestion, :url => { :action => "update" } do |e| %>
+   	<!-- prompt followed by text area for user input -->
+    <%= e.label "Suggestion text: " %><%= e.text_area :text %><br />
+   
+    <!-- hide the suggestion id unless viewing from page source -->
+    <%= e.hidden_field :id %>
+    
+    <!-- Submit button -->
+    <%= e.submit "Change it" %>
+  <% end %>
+<% else %>
+  <h2>You shouldn't be here</h2>
+<% end %>

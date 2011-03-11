@@ -1,0 +1,11 @@
+<!-- app/views/user_suggestions/new.html.erb -->
+<!-- Allow edit for regular user -->
+<% if cookies.signed[:authenticated]%>
+  <h2>Insert a new suggestion:</h2>
+  <%= form_for :user_suggestion, :url => {:action => "create"} do |c| %>
+    <%= c.label "Suggestion: " %><%= c.text_area :suggestion %><br />
+    <%= c.submit "Submit" %>
+  <% end %>
+<% else %>
+  <h2>You shouldn't be here</h2>
+<% end %>

@@ -1,0 +1,21 @@
+<!-- app/views/users/edit.html.erb -->
+<!-- If the user is a superuser -->
+<% if cookies.signed[:is_admin] %>
+  <h2>Edit User:</h2>
+  <%= form_for @user, :url => { :action => "update" } do |e| %>
+    <!-- Create text on page followed by blank field for user entry -->
+    <%= e.label "First Name: " %><%= e.text_field :first_name %><br />
+    <%= e.label "Last Name: " %><%= e.text_field :last_name %><br />
+    <%= e.label "Email: " %><%= e.text_field :email %><br />
+    <%= e.label "Username: " %><%= e.text_field :username %><br />
+    <%= e.label "Department: " %><%= e.text_field :dep %><br />
+    <%= e.label "Division: " %><%= e.text_field :div %><br />
+   
+    <!-- Hidden from broswer view unless viewing source page -->
+    <%= e.hidden_field :id %>
+    
+    <%= e.submit "Accept" %>
+  <% end %>
+<% else %>
+  <h2>You shouldn't be here</h2>
+<% end %>

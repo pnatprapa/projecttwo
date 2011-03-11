@@ -1,0 +1,9 @@
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: projecttwo
+  pool: 5
+  username: icywind32
+  password: awedxzs32
+

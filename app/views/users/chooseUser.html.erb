@@ -1,0 +1,12 @@
+<!-- app/views/users/chooseUser.html.erb -->
+<!-- If verified as admin -->
+<% if cookies.signed[:is_admin]%>
+  <h2>Choose user to view info or edit:</h2>
+  <%= form_for :id, :url => {:action => "edit"} do |f| %>
+    <%= f.collection_select @user, @users, :id, :username, 
+      options = {:prompt => "Choose a user..."}, :class => "user" %><br />
+    <%= f.submit "Accept" %>
+  <% end %>
+<% else %>
+  <h2>You shouldn't be here</h2>
+<% end %>

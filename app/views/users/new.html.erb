@@ -1,0 +1,18 @@
+<!-- app/views/users/new.html.erb -->
+<% if cookies.signed[:is_admin]%>
+  <h2>Lets make a new user:</h2>
+  <%= form_for :user, :url => { :action => "create" } do |n| %>
+   	<!-- Text followed by blank field for user input -->
+    <%= n.label "First Name: " %><%= n.text_field :first_name %><br />
+    <%= n.label "Last Name: " %><%= n.text_field :last_name %><br />
+    <%= n.label "E-Mail: " %><%= n.text_field :email %><br />
+    <%= n.label "Division: " %><%= n.text_field :div %><br />
+    <%= n.label "Department: " %><%= n.text_field :dep %><br />
+    <%= n.label "Username: " %><%= n.text_field :username %><br />
+    <%= n.label "Password: " %><%= n.password_field :password %><br />
+    <!-- submit button -->
+    <%= n.submit "Create" %>
+  <% end %>
+<% else %>
+  <h2>You shouldn't be here</h2>
+<% end %>

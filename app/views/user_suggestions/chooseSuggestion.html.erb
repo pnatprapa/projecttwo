@@ -1,0 +1,12 @@
+<!-- app/views/user_suggestions/chooseSuggestion.html.erb -->
+<!-- allows for both superuser and regular authenticated user to have choices :authenicated -->
+<% if cookies.signed[:authenticated]%>
+  <h2>Choose a suggestion to edit:</h2>
+  <%= form_for :sugid, :url => {:action => "edit"} do |e| %>
+    <%= e.collection_select @suggestion, @suggestions, :sugid, :text, 
+      options = {:prompt => "Choose one "}, :class => "suggestion" %><br />
+    <%= e.submit "Edit" %>
+  <% end %>
+<% else %>
+  <h2>You shouldn't be here</h2>
+<% end %>
